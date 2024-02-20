@@ -66,7 +66,7 @@ function scrollBackground() {
 // Fonction pour démarrer le jeu
 function startGame() {
     scrollBackground();
-    // Tout autre code d'initialisation du jeu irait ici
+    // code d'initialisation du jeu ...
 }
 
 // Démarrage du jeu
