@@ -71,3 +71,24 @@ function startGame() {
 
 // Démarrage du jeu
 startGame();
+
+// gérer l'affichage
+// Fonction pour basculer en mode plein écran
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+            alert(`Erreur lors de la tentative de passage en mode plein écran : ${err.message} (${err.name})`);
+        });
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
+
+// un écouteur d'événements pour activer le plein écran
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'p') { // Si 'p' est appuyée, basculer le plein écran
+        toggleFullScreen();
+    }
+});
