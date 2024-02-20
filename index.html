@@ -5,37 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu de Voiture</title>
-    <style>
-        body {
-            text-align: center;
-        }
-
-        #game-container {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            margin: auto;
-            background-image: url('road-background.png');
-            /* Vous devrez remplacer ceci par l'URL de l'image de fond de la route */
-            background-size: cover;
-        }
-
-        #car {
-            position: absolute;
-            bottom: 50px;
-            /* Ajustez cette valeur pour aligner la voiture sur la route */
-            left: 65%;
-            transform: translateX(-50%);
-            background-image: url('car-transparent.png');
-            /* Remplacez par le chemin de la nouvelle image de voiture */
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 120px;
-            /* Ajustez selon la taille de l'image de votre voiture */
-            height: 100px;
-            /* Ajustez selon la taille de l'image de votre voiture */
-        }
-    </style>
+    <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body>
@@ -44,38 +14,7 @@
         <div id="car"></div>
     </div>
 
-    <script>
-        // Sélectionner l'élément de la voiture
-        const car = document.getElementById('car');
-        // Définissez la position initiale de la voiture
-        car.style.left = '50%';
-
-        //pour déplacer la voiture
-        function moveCar(event) {
-            // Convertir la position actuelle en pixels pour le calcul
-            const carRect = car.getBoundingClientRect();
-            const gameContainerRect = car.parentElement.getBoundingClientRect();
-
-            switch (event.keyCode) {
-                case 37: // Flèche gauche
-                    if (carRect.left > gameContainerRect.left) {
-                        car.style.left = (car.offsetLeft - 10) + 'px';
-                    }
-                    break;
-                case 39: // Flèche droite
-                    if (carRect.right < gameContainerRect.right) {
-                        car.style.left = (car.offsetLeft + 10) + 'px';
-                    }
-                    break;
-                // autres cas si nécessaire
-            }
-        }
-
-        // Écoutezr les événements de touche sur la fenêtre
-        window.addEventListener('keydown', moveCar);
-    </script>
-
-
+    <script src="js/global.js"></script>
 
 </body>
 

@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    /* Taille fixe pour le jeu*/
+    height: 600px;
+    overflow: hidden;
+    /* Cacher le débordement pour le défilement */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#car {
+    position: absolute;
+    bottom: 50px;
+    /*pour aligner la voiture sur la route */
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('../images/horizontal-car-right-to-left.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 240px;
+    height: 200px;
+    
+}
