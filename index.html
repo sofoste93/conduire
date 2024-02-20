@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Voiture</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #game-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: auto;
+            background-image: url('road-background.png');
+            /* Vous devrez remplacer ceci par l'URL de l'image de fond de la route */
+            background-size: cover;
+        }
+
+        #car {
+            position: absolute;
+            bottom: 50px;
+            /* Ajustez cette valeur pour aligner la voiture sur la route */
+            left: 65%;
+            transform: translateX(-50%);
+            background-image: url('car-transparent.png');
+            /* Remplacez par le chemin de la nouvelle image de voiture */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 120px;
+            /* Ajustez selon la taille de l'image de votre voiture */
+            height: 100px;
+            /* Ajustez selon la taille de l'image de votre voiture */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-container">
+        <div id="car"></div>
+    </div>
+
+    <script>
+        // Sélectionnez l'élément de la voiture
+        const car = document.getElementById('car');
+
+        // Fonction pour déplacer la voiture
+        function moveCar(event) {
+            switch (event.keyCode) {
+                case 37: // Flèche gauche
+                    car.style.left = (parseInt(car.style.left) - 5) + 'px';
+                    break;
+                case 39: // Flèche droite
+                    car.style.left = (parseInt(car.style.left) + 5) + 'px';
+                    break;
+                // Vous pouvez ajouter plus de cas pour haut/bas si nécessaire
+            }
+        }
+
+        // Écoutez les événements de touche sur la fenêtre
+        window.addEventListener('keydown', moveCar);
+    </script>
+
+
+</body>
+
+</html>
