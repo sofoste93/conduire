@@ -45,12 +45,12 @@
     </div>
 
     <script>
-        // Sélectionnez l'élément de la voiture
+        // Sélectionner l'élément de la voiture
         const car = document.getElementById('car');
         // Définissez la position initiale de la voiture
         car.style.left = '50%';
 
-        // Fonction pour déplacer la voiture
+        //pour déplacer la voiture
         function moveCar(event) {
             // Convertir la position actuelle en pixels pour le calcul
             const carRect = car.getBoundingClientRect();
@@ -67,11 +67,11 @@
                         car.style.left = (car.offsetLeft + 10) + 'px';
                     }
                     break;
-                // Ajouter d'autres cas si nécessaire
+                // autres cas si nécessaire
             }
         }
 
-        // Écoutez les événements de touche sur la fenêtre
+        // Écoutezr les événements de touche sur la fenêtre
         window.addEventListener('keydown', moveCar);
     </script>
 
