@@ -47,23 +47,34 @@
     <script>
         // Sélectionnez l'élément de la voiture
         const car = document.getElementById('car');
+        // Définissez la position initiale de la voiture
+        car.style.left = '50%';
 
         // Fonction pour déplacer la voiture
         function moveCar(event) {
+            // Convertir la position actuelle en pixels pour le calcul
+            const carRect = car.getBoundingClientRect();
+            const gameContainerRect = car.parentElement.getBoundingClientRect();
+
             switch (event.keyCode) {
                 case 37: // Flèche gauche
-                    car.style.left = (parseInt(car.style.left) - 5) + 'px';
+                    if (carRect.left > gameContainerRect.left) {
+                        car.style.left = (car.offsetLeft - 10) + 'px';
+                    }
                     break;
                 case 39: // Flèche droite
-                    car.style.left = (parseInt(car.style.left) + 5) + 'px';
+                    if (carRect.right < gameContainerRect.right) {
+                        car.style.left = (car.offsetLeft + 10) + 'px';
+                    }
                     break;
-                // Vous pouvez ajouter plus de cas pour haut/bas si nécessaire
+                // Ajouter d'autres cas si nécessaire
             }
         }
 
         // Écoutez les événements de touche sur la fenêtre
         window.addEventListener('keydown', moveCar);
     </script>
+
 
 
 </body>
