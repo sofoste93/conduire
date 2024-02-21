@@ -1,94 +1,50 @@
 // Sélectionner l'élément de la voiture
 const car = document.getElementById('car');
-// Définissez la position initiale de la voiture
-car.style.left = '50%';
+car.style.left = '50%'; // Position initiale de la voiture
 
 // Pour déplacer la voiture
 function moveCar(event) {
-    // Convertir la position actuelle en pixels pour le calcul
     const carRect = car.getBoundingClientRect();
     const gameContainerRect = car.parentElement.getBoundingClientRect();
 
-    switch (event.keyCode) {
-        case 37: // Flèche gauche
-            if (carRect.left > gameContainerRect.left) {
-                car.style.left = (car.offsetLeft - 10) + 'px';
-            }
-            break;
-        case 39: // Flèche droite
-            if (carRect.right < gameContainerRect.right) {
-                car.style.left = (car.offsetLeft + 10) + 'px';
-            }
-            break;
-        // more..?
+    if (event.key === 'ArrowLeft' && carRect.left > gameContainerRect.left) {
+        car.style.left = (car.offsetLeft - 5) + 'px';
+    } else if (event.key === 'ArrowRight' && carRect.right < gameContainerRect.right) {
+        car.style.left = (car.offsetLeft + 5) + 'px';
     }
 }
 
 // Écoutez les événements de touche sur la fenêtre
 window.addEventListener('keydown', moveCar);
 
-// Déclaration des variables pour le défilement de fond
+// Variables pour le défilement de fond
 const gameContainer = document.getElementById('game-container');
-const backgrounds = [
-    '../images/highway-0.jpg', '../images/highway-1.jpg', '../images/highway-2.jpg',
-    '../images/highway-3.jpg', '../images/highway-4.jpg', '../images/highway-5.jpg',
-    '../images/highway-6.jpg', '../images/highway-7.jpg', '../images/highway-8.jpg',
-    '../images/highway-9.jpg', '../images/highway-10.jpg', '../images/highway-11.jpg'
-];
-let currentBackgroundIndex = 0;
-let positionX = 0;
+let isMoving = false;
 
-// Fonction pour changer l'image de fond
-function changeBackground() {
-    currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
-    gameContainer.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
-    // Réinitialiser la position pour le nouvel arrière-plan
-    positionX = 0;
+// Fonction pour démarrer et arrêter le défilement de fond
+function toggleScroll(event) {
+    if (event.key === 'ArrowUp') {
+        isMoving = true;
+        window.requestAnimationFrame(scrollBackground);
+    } else if (event.key === 'ArrowDown') {
+        isMoving = false;
+    }
 }
 
 // Fonction pour mettre à jour la position de fond pour créer l'effet de défilement
-function updatePosition() {
-    positionX -= 1; // Ajustez la vitesse de défilement ici
-    gameContainer.style.backgroundPosition = `${positionX}px 0px`;
-
-    // Si la position atteint la largeur de l'image, changez l'image de fond
-    if (Math.abs(positionX) >= gameContainer.offsetWidth) {
-        changeBackground();
-    }
-}
-
-// Fonction pour commencer le défilement de fond
 function scrollBackground() {
-    // Mettez à jour la position toutes les 20 ms pour créer l'effet de défilement
-    setInterval(updatePosition, 20);
-}
-
-// Fonction pour démarrer le jeu
-function startGame() {
-    scrollBackground();
-    // code d'initialisation du jeu ...
-}
-
-// Démarrage du jeu
-startGame();
-
-// gérer l'affichage
-// Fonction pour basculer en mode plein écran
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => {
-            alert(`Erreur lors de la tentative de passage en mode plein écran : ${err.message} (${err.name})`);
-        });
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
+    if (isMoving) {
+        let currentBackgroundPos = parseInt(window.getComputedStyle(gameContainer).backgroundPositionX) || 0;
+        gameContainer.style.backgroundPositionX = (currentBackgroundPos - 1) + 'px';
+        window.requestAnimationFrame(scrollBackground);
     }
 }
 
-// un écouteur d'événements pour activer le plein écran
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'p') { // Si 'p' est appuyée, basculer le plein écran
-        toggleFullScreen();
-    }
+// Écouter les événements de touche pour démarrer/arrêter le défilement
+window.addEventListener('keydown', toggleScroll);
+window.addEventListener('keyup', toggleScroll);
+
+// Instructions pour l'utilisateur
+document.addEventListener('DOMContentLoaded', () => {
+    alert("Utilise les flèches gauche et droite pour te déplacer. Appuie sur la flèche haut pour commencer à rouler et sur la flèche bas pour freiner et arrêter.");
 });

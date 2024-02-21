@@ -4,6 +4,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ecf0f1;
+    /* Couleur de fond pour combler les vides avant que le jeu ne démarre */
 }
 
 #game-container {
@@ -13,14 +15,16 @@ body {
     height: 600px;
     overflow: hidden;
     /* Cacher le débordement pour le défilement */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('../images/highway-1.jpg');
+    background-size: auto 100%;
+    /* Ajuster la hauteur de l'image de fond pour qu'elle s'adapte à la hauteur du conteneur */
+    background-repeat: repeat-x;
+    /* Répéter l'image sur l'axe X */
 }
 
 #car {
     position: absolute;
     bottom: 50px;
-    /*pour aligner la voiture sur la route */
     left: 50%;
     transform: translateX(-50%);
     background-image: url('../images/horizontal-car-right-to-left.png');
@@ -28,5 +32,4 @@ body {
     background-repeat: no-repeat;
     width: 240px;
     height: 200px;
-    
 }
