@@ -15,7 +15,7 @@ body {
     height: 600px;
     overflow: hidden;
     /* Cacher le débordement pour le défilement */
-    background-image: url('../images/highway-1.jpg');
+    background-image: url('../images/highway-3.jpg');
     background-size: auto 100%;
     /* Ajuster la hauteur de l'image de fond pour qu'elle s'adapte à la hauteur du conteneur */
     background-repeat: repeat-x;
@@ -32,4 +32,23 @@ body {
     background-repeat: no-repeat;
     width: 240px;
     height: 200px;
+}
+
+.controls,
+.instructions {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#obstacle {
+    position: absolute;
+    width: 50px;
+    height: 5px;
+    background-color: red;
+    /* Couleur visible pour l'obstacle */
+    top: 100px;
+    /* Position de départ de l'obstacle */
+    left: 50%;
+    /* Centrer l'obstacle horizontalement */
+    transform: translateX(-50%);
 }

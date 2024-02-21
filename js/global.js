@@ -32,10 +32,12 @@ function toggleScroll(event) {
 }
 
 // Fonction pour mettre à jour la position de fond pour créer l'effet de défilement
+// inclure checkCollision
 function scrollBackground() {
     if (isMoving) {
         let currentBackgroundPos = parseInt(window.getComputedStyle(gameContainer).backgroundPositionX) || 0;
-        gameContainer.style.backgroundPositionX = (currentBackgroundPos - 1) + 'px';
+        gameContainer.style.backgroundPositionX = `${currentBackgroundPos - 1}px`;
+        checkCollision(); // Vérifier si la voiture heurte l'obstacle
         window.requestAnimationFrame(scrollBackground);
     }
 }
@@ -48,3 +50,22 @@ window.addEventListener('keyup', toggleScroll);
 document.addEventListener('DOMContentLoaded', () => {
     alert("Utilise les flèches gauche et droite pour te déplacer. Appuie sur la flèche haut pour commencer à rouler et sur la flèche bas pour freiner et arrêter.");
 });
+
+document.getElementById('start').addEventListener('click', () => isMoving = true);
+document.getElementById('stop').addEventListener('click', () => isMoving = false);
+
+// Ajout d'une fonction pour détecter la collision avec l'obstacle
+function checkCollision() {
+    const carRect = car.getBoundingClientRect();
+    const obstacle = document.getElementById('obstacle');
+    const obstacleRect = obstacle.getBoundingClientRect();
+
+    if (carRect.left < obstacleRect.right && carRect.right > obstacleRect.left &&
+        carRect.top < obstacleRect.bottom && carRect.bottom > obstacleRect.top) {
+        // Collision détectée
+        alert("Collision ! Jeu terminé.");
+        isMoving = false; // Arrêter le jeu
+    }
+}
+
+
