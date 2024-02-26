@@ -5,7 +5,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ecf0f1;
-    /* Couleur de fond pour combler les vides avant que le jeu ne démarre */
 }
 
 #game-container {
