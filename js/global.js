@@ -14,7 +14,7 @@ function moveCar(event) {
     }
 }
 
-// Écoutez les événements de touche sur la fenêtre
+// Écouter les événements de touche sur la fenêtre
 window.addEventListener('keydown', moveCar);
 
 // Variables pour le défilement de fond
@@ -32,12 +32,12 @@ function toggleScroll(event) {
 }
 
 // Fonction pour mettre à jour la position de fond pour créer l'effet de défilement
-// inclure checkCollision
+// todo: inclure checkCollision
 function scrollBackground() {
     if (isMoving) {
         let currentBackgroundPos = parseInt(window.getComputedStyle(gameContainer).backgroundPositionX) || 0;
         gameContainer.style.backgroundPositionX = `${currentBackgroundPos - 1}px`;
-        checkCollision(); // Vérifier si la voiture heurte l'obstacle
+        checkCollision(); // todo: Vérifier si la voiture heurte l'obstacle
         window.requestAnimationFrame(scrollBackground);
     }
 }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('start').addEventListener('click', () => isMoving = true);
 document.getElementById('stop').addEventListener('click', () => isMoving = false);
 
-// Ajout d'une fonction pour détecter la collision avec l'obstacle
+// todo: fonction pour détecter la collision avec l'obstacle
 function checkCollision() {
     const carRect = car.getBoundingClientRect();
     const obstacle = document.getElementById('obstacle');
